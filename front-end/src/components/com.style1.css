@@ -1,0 +1,100 @@
+.linknav{
+    margin-left: 2rem;
+
+}
+
+.nav-link-wrappwer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.spanlogo img{
+    width: 50px;
+    height: 50px;
+}
+
+.form-wrapper {
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .form {
+    width: 30rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    padding: 2rem;
+    box-shadow: 0 0 10px 2px rgba(170, 170, 170, 0.5);
+  }
+  .form:hover{
+    box-shadow: 0 0 10px 2px rgba(131, 194, 144, 0.9);
+
+  }
+  .form label {
+    font-weight: bold;
+  }
+  
+  .form .submit-btn {
+    margin-top: 1rem;
+  }
+  
+  .register-link {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .register-link p {
+    font-size: 0.9rem;
+  }
+  
+  .register-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  h2{
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .formlogo{
+    position: absolute;
+    top: 11rem;
+    right: -2.8rem;
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .info-button{
+    margin-top: 1rem;
+  }
+  .info-button .btn{
+    margin-left:8px;
+  }
+
+  .success-message{
+    color: green;
+  }
+
+  .error-messages{
+    color: red;
+    margin-bottom: 8px;
+  }
+
+  .verification-instructions {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #888;
+  }

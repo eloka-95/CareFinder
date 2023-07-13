@@ -1,0 +1,24 @@
+.health-wrapper{
+    padding: 2rem;
+    margin-top: 1rem;
+    width: 100%;
+    height: 100vh;
+}
+.info-wrapper{
+    width: 30rem;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+gap: 8px;
+}
+.img-box{
+    border: 1px solid rgb(115, 85, 223);
+    width: 20rem;
+    height: 20rem;
+    border-radius: 4px;
+
+}
+.healt-nav a{
+margin-left: 4px;
+}

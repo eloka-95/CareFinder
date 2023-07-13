@@ -1,0 +1,53 @@
+
+
+
+/* footer.css */
+.footer {
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin-top: 2rem;
+  }
+  
+  .footer .spanlogo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .footer .details-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .footer .details-wrapper div {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer h6 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .footer p {
+    margin-bottom: 5px;
+  }
+  
+  .footer span {
+    font-weight: bold;
+  }
+  
+  .footer .copywirte {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+  }
+  
