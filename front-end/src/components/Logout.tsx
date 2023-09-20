@@ -23,8 +23,7 @@ const LogoutButton = () => {
                 // Clear local storage
                 localStorage.removeItem('bearertoken');
                 // Clear session storage
-                sessionStorage.clear();
-
+                sessionStorage.removeItem('sessionId');
                 // Redirect to the login page or any other desired page
                 navigate('/login');
             }

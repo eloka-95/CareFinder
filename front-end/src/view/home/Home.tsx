@@ -6,7 +6,7 @@ import { useForm } from '../../components/Form';
 import ErrorMassage from '../../components/ErrorMassage';
 import './home.css';
 import { useNavigate } from 'react-router-dom';
-
+import { useSession } from '../../Context/SessionContext';
 
 const Home = () => {
 
@@ -16,10 +16,13 @@ const Home = () => {
 
     };
 
+
     // Custom hook to handle form values and submission
     const { values, onChange, onSubmit } = useForm(handleSubmit, initialState);
     const [errorMessage, setErrorMessage] = useState<string[]>([]); // Changed variable name to 'errorMassage' (typo?)
     const navigate = useNavigate();
+
+    const { sessionId } = useSession();
 
     const clearMessages = () => {
         setTimeout(() => {
@@ -30,6 +33,12 @@ const Home = () => {
 
 
     async function handleSubmit(buttonText: string) {
+        // if (!sessionId){
+        //     setErrorMessage(['Please sign-in']);
+        //     clearMessages();
+        //     navigate('/');
+        //     return;
+        // }
         // Create the request data including the button text
         if (typeof buttonText !== 'string') {
             buttonText = "";
@@ -52,10 +61,19 @@ const Home = () => {
         if (requestData.search === "" && requestData.buttonText === ""){
             return;
         }
-
-        const search_facility = `${requestData.location} ${requestData.buttonText} ${requestData.search}`;
         
-        localStorage.setItem("search-data", search_facility);
+        const userQuery = `${requestData.location} ${requestData.buttonText} ${requestData.search}`;
+
+        // Save the entire form data as an object
+        const formData = {
+            search_facility: userQuery
+        };
+
+        // Convert the formData object to a JSON string
+        const formDataString = JSON.stringify(formData);
+
+        // Save the JSON string to local storage
+        localStorage.setItem('search_facility', formDataString);
 
         navigate('/health');
         // save location on localstorage

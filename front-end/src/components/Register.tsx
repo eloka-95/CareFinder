@@ -52,9 +52,9 @@ const Register: React.FC = () => {
                 // Retrieve the bearer token from the response
                 const bearerToken = response.data.data.token;
                 localStorage.setItem("bearertoken", bearerToken);
+                sessionStorage.setItem('sessionId', bearerToken);
+
             }
-
-
 
         } catch (error) {
             const axiosError = error as AxiosError;
@@ -142,7 +142,7 @@ const Register: React.FC = () => {
                         required
                     />
                 </Form.Group>
-                
+
                 <Button variant="primary" type="submit" id='register'>
                     {isLoading ? 'Loading...' : 'Register'}
                 </Button>

@@ -12,8 +12,8 @@ export const SessionProvider: React.FC = ({ children }) => {
   const [sessionId, setSessionId] = useState<string | null>(null);
 
   useEffect(() => {
-    const sessionId = sessionStorage.getItem('sessionId');
-    setSessionId(sessionId);
+    const getSessionId = sessionStorage.getItem('sessionId');
+    setSessionId(getSessionId);
   }, []);
 
   return (

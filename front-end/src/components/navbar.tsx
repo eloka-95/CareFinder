@@ -12,7 +12,6 @@ import LogoutButton from './Logout';
 const NavbarComponent = () => {
     
     const { sessionId } = useSession();
-
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -38,6 +37,7 @@ const NavbarComponent = () => {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
+
 
 
                     <div>

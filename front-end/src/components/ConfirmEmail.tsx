@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './com.style1.css';
-import { NavLink, Link , useNavigate} from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useForm } from './Form';
 import axios, { AxiosError } from 'axios';
 import SuccessMessage from './SuccessMessage';
@@ -36,7 +36,7 @@ const EmailVerification: React.FC = () => {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let sessionId = '';
         for (let i = 0; i < 10; i++) {
-          sessionId += chars.charAt(Math.floor(Math.random() * chars.length));
+            sessionId += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return sessionId;
     }
@@ -64,10 +64,8 @@ const EmailVerification: React.FC = () => {
                 // After successful authentication
                 sessionStorage.setItem('sessionId', generateSessionId());
                 navigate('/')
-                
+
             }
-
-
         } catch (error) {
             const axiosError = error as AxiosError;
             if (axiosError.response) {

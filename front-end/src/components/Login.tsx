@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './com.style1.css';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/image/logo.png'
 import Navbar from 'react-bootstrap/Navbar';
 import { useForm } from './Form';
@@ -11,6 +11,7 @@ import SuccessMessage from './SuccessMessage';
 import ErrorMassage from './ErrorMassage';
 
 const Login: React.FC = () => {
+const navigate = useNavigate();
 
     const clearMessages = () => {
         setTimeout(() => {
@@ -33,11 +34,21 @@ const Login: React.FC = () => {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/login', values);
 
+
             if (response.status === 200) {
                 // Registration successful
                 setSuccessMessage(response.data.message);
+
                 setErrorMessage([]); // Clear error messages
                 clearMessages(); // Clear messages after a delay
+                // Retrieve the bearer token from the response
+                
+                navigate('/');
+
+                const bearerToken = response.data.data.token;
+
+                localStorage.setItem("bearertoken", bearerToken);
+                sessionStorage.setItem('sessionId', bearerToken);
             }
 
             // If Response is not 200

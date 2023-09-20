@@ -69,3 +69,5 @@
     so either i get the user in put save it on the localstorage then naivigate to the /search page were i will get the search input from the local storge then i will fetch and display the info
 
     bug *** make the error and sucess massage reuseable *********************
+
+    
