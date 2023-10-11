@@ -11,7 +11,7 @@ import Details from './view/healthpage/Details';
 import Contact from './view/healthpage/contact';
 import EmailVerification from './components/ConfirmEmail';
 import PrivateRoutes from './PrivateRoutes';
-
+import PageNotFound from './components/PageNotFound';
 
 function App() {
 
@@ -35,6 +35,8 @@ function App() {
 
         </Route>
         <Route path="/verifyemail" element={<EmailVerification />} />
+
+        <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   );

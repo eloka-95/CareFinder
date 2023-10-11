@@ -1,24 +1,35 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useState } from 'react'
+import { NavLink, Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import './health.css';
 import { useQuery } from 'react-query';
+import SearchBar from '../../components/search';
 
 
+
+// typescript type for the fetched carefacilty 
 type Facility = {
     id: number;
     name: string;
     state: string;
-    details:string;
-    location:string;
-    phone_number:string;
-    email:string;
+    details: string;
+    location: string;
+    phone_number: string;
+    email: string;
 
     // Add other fields as needed
 };
 
 const Health = () => {
 
-    const search_facility = localStorage.getItem("search_facility");
+    // const [searchFilter, setSearchFilter] = useState<string>("")
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
+
+    const searchQuery = searchParams.get('q'); // getting the search data from the URL.
+    // console.log(location);
+
+    const search_facility = searchQuery;
     const bearerToken = localStorage.getItem("bearertoken");
 
     const axiosInstance = axios.create({
@@ -45,7 +56,7 @@ const Health = () => {
         return <div>Loading...</div>;
     }
 
-    if (isFetching){
+    if (isFetching) {
         return <div>Fetching...</div>
     }
 
@@ -53,41 +64,73 @@ const Health = () => {
         return <div>Error: {error && error.message}</div>;
     }
 
-    const displayFacility = data.map((facility: Facility) => (
-        // <ul key={facility.id}>
-        //     <li>{facility.name}</li>
-        // </ul>
-         <div className='info-wrapper' key={facility.id}>
 
-             <div className='img-box'>
-                 {/* <img src='' alt='' /> */}
-                 <div>{facility.name}</div>
-             </div>
-             <div className='healt-nav'>
-                 <NavLink
-                     to="."
-                     end
-                 >Details</NavLink>
-                 <NavLink
-                     to="location">Location</NavLink>
-                 <NavLink to="contact">Contact</NavLink>
-             </div>
-             <div className='outlet-box'>
-                <Outlet context={{ facility }} />
+    //    geting the search parameter from the url 
+    const getSearchParam = searchParams.get("f");
+    const searchData = getSearchParam ? getSearchParam : "";
 
-             </div>
-         </div>
-    ));
+
+    // get thet search filter from the url 
+
+    // Step 1: Trim, lowercase, and split the searchFilter into an array of search terms
+    const searchTerms = searchData.trim().toLowerCase().split(' ');
+
+    // Step 2: Filter the care facilities based on the search terms
+    const filteredCareFacilities = data.filter((facility: Facility) => {
+        // Check if every search term is included in the facility name
+        const everyTermIncluded = searchTerms.every(term => facility.name.toLowerCase().includes(term));
+        return everyTermIncluded; // Return true to keep the facility if all search terms are included
+    });
+
+
+    const displayFacility =
+        filteredCareFacilities.length > 0 ? (
+            filteredCareFacilities.map((facility: Facility) => (
+                <div className="info-wrapper" key={facility.id}>
+                    <div className='info-wrapper' key={facility.id}>
+
+                        <div className='img-box'>
+                            {/* <img src='' alt='' /> */}
+                            <h1>{facility.id}</h1>
+                            <div>{facility.name}</div>
+                        </div>
+                        <div className='healt-nav'>
+                            <NavLink
+                                to="."
+                                end
+                            >Details</NavLink>
+                            <NavLink
+                                to="location">Location</NavLink>
+                            <NavLink to="contact">Contact</NavLink>
+                        </div>
+                        <div className='outlet-box'>
+                            <Outlet context={{ facility }} />
+
+                        </div>
+                    </div>        </div>
+            ))
+        ) : (
+            <div>No facilities found based on the search.</div>
+        );
+
+
     return (
-       
+
         <div className='health-wrapper'>
+
             {/* {error && <div>Error: {error.response.data.data.search_facility}</div>} */}
             <NavLink
                 to=".."
                 relative="path" >back</NavLink>
 
+            {/* facility search bar section  */}
+            <SearchBar />
+            {/* end of facility search bar section  */}
+
+            {/* display fetched facilty section */}
             {displayFacility}
-            
+            {/*end of display fetched facilty section  */}
+
 
         </div>
     );
