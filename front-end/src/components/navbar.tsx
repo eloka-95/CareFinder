@@ -45,7 +45,7 @@ const NavbarComponent = () => {
                             <LogoutButton />
                             // onClick={handleLogout} 
                         ) : (
-                            <Nav.Link as={NavLink} to="login" className='linknav'>Sign in</Nav.Link>
+                                <Nav.Link as={NavLink} to="login" className='linknav' data-id="sign-in">Sign in</Nav.Link>
                         )}
 
                     </div>

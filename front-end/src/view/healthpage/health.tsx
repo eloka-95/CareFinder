@@ -4,8 +4,7 @@ import axios from 'axios';
 import './health.css';
 import { useQuery } from 'react-query';
 import SearchBar from '../../components/search';
-
-
+import ShareButton from '../../components/ShareButton';
 
 // typescript type for the fetched carefacilty 
 type Facility = {
@@ -61,7 +60,7 @@ const Health = () => {
     }
 
     if (isError) {
-        return <div>Error: {error && error.message}</div>;
+        return <div className='error-fetching-data'>{error && error.message}</div>;
     }
 
 
@@ -91,7 +90,6 @@ const Health = () => {
 
                         <div className='img-box'>
                             {/* <img src='' alt='' /> */}
-                            <h1>{facility.id}</h1>
                             <div>{facility.name}</div>
                         </div>
                         <div className='healt-nav'>
@@ -103,10 +101,17 @@ const Health = () => {
                                 to="location">Location</NavLink>
                             <NavLink to="contact">Contact</NavLink>
                         </div>
+
+                        <div>
+                            <ShareButton name={facility.name}/>
+                        </div>
+
                         <div className='outlet-box'>
                             <Outlet context={{ facility }} />
 
                         </div>
+                        
+
                     </div>        </div>
             ))
         ) : (
